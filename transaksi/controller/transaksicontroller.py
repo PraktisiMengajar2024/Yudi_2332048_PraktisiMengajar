@@ -57,7 +57,7 @@ class TransaksiController:
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at
                 
-                transaksi_obj = Transaksi(transaksi['id'], transaksi['pelanggan_id'], pelanggan['tanggal'], created_at, updated_at)
+                transaksi_obj = Transaksi(transaksi['id'], transaksi['pelanggan_id'], transaksi['tanggal'], created_at, updated_at)
                 return {'transaksi': transaksi_obj.to_dict()}, 200
             else:
                 return {'message': 'Data transaksi tidak ditemukan'}, 404
