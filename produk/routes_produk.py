@@ -29,5 +29,5 @@ def update_produk(id):
 #rute hapus data
 @produk_routes.route('/produk/<int:id>', methods=['DELETE'])
 def hapus_produk(id):
-    data = request.json
+    #data = request.json
     return produk_controller.hapus_produk(id)
