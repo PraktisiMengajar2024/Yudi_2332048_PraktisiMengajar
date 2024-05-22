@@ -37,7 +37,7 @@ class PelangganController:
         all_pelanggan = self.get_all_pelanggan()
         if all_pelanggan is not None:
             pelanggan_data = [pelanggan.to_dict() for pelanggan in all_pelanggan]
-            return {'pelanggan': pelanggan_data}, 200
+            return {'produk': pelanggan_data}, 200
         else:
             return {'message': 'Terjadi kesalahan saat mengambil data pelanggan'}, 500
         
