@@ -10,3 +10,19 @@ Content-Type: application/json
     "harga": "100.00",
     "stok": "25"
 }
+
+###pelanggan
+get http://127.0.0.1:5000/pelanggan
+
+###
+get http://127.0.0.1:5000/pelanggan/1
+
+###
+POST http://127.0.0.1:5000/pelanggan
+Content-Type: application/json
+
+{
+    "nama": "Yudi",
+    "alamat": "Jl. raja isa Purimas residence blok b6/09",
+    "telepon": "0895385203781"
+}
