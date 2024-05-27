@@ -1,8 +1,8 @@
 from datetime import datetime
 
 class Transaksi:
-    def __init__(self, id, id_pelanggan, tanggal, created_at=None, updated_at=None):
-        self.id = id
+    def __init__(self, id_transaksi, id_pelanggan, tanggal, created_at=None, updated_at=None):
+        self.id_transaksi = id_transaksi
         self.id_pelanggan = id_pelanggan
         self.tanggal = tanggal
         self.created_at = created_at.strftime("%Y-%m-%d %H:%M:%S") if created_at else None
@@ -12,7 +12,7 @@ class Transaksi:
     def from_dict(data):
 
         return Transaksi(
-            id=data['id'],
+            id_transaksi=data['id_transaksi'],
             id_pelanggan=data['id_pelanggan'],
             tanggal=data['tanggal'],
             created_at=datetime.strptime(data['created_at'], "%Y-%m-%d %H:%M:%S") if data.get('created_at') else None,
@@ -21,7 +21,7 @@ class Transaksi:
     
     def to_dict(self):
         return {
-            'id': self.id,
+            'id_transaksi': self.id_transaksi,
             'id_pelanggan': self.id_pelanggan,
             'tanggal': self.tanggal,
             'created_at': self.created_at,

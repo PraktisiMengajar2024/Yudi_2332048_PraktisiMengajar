@@ -24,7 +24,7 @@ class TransaksiController:
                     created_at = datetime.now() - created_at
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at 
-                transaksi = Transaksi(row['id'], row['id_pelanggan'], row['tanggal'], created_at, updated_at)
+                transaksi = Transaksi(row['id_transaksi'], row['id_pelanggan'], row['tanggal'], created_at, updated_at)
                 transaksi_list.append(transaksi)
 
             return transaksi_list
@@ -42,10 +42,10 @@ class TransaksiController:
             return {'message': 'Terjadi kesalahan saat mengambil data transaksi'}, 500
         
     # pencarian data dari tabel transaksi
-    def cari_transaksi(self,id):
+    def cari_transaksi(self,id_transaksi):
         try:
             cursor = self.db.cursor(dictionary=True)
-            cursor.execute("select * from transaksi where id = %s", (id,))
+            cursor.execute("select * from transaksi where id_transaksi = %s", (id_transaksi,))
             transaksi = cursor.fetchone()
             cursor.close()
 
@@ -57,7 +57,7 @@ class TransaksiController:
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at
                 
-                transaksi_obj = Transaksi(transaksi['id'], transaksi['id_pelanggan'], transaksi['tanggal'], created_at, updated_at)
+                transaksi_obj = Transaksi(transaksi['id_transaksi'], transaksi['id_pelanggan'], transaksi['tanggal'], created_at, updated_at)
                 return {'transaksi': transaksi_obj.to_dict()}, 200
             else:
                 return {'message': 'Data transaksi tidak ditemukan'}, 404
@@ -85,14 +85,14 @@ class TransaksiController:
             return {'message': 'Terjadi kesalahan saat menambah data transaksi'}, 500
         
     # update data transaksi
-    def update_transaksi(self, id, data):
+    def update_transaksi(self, id_transaksi, data):
         try:
             if not data:
                 return {'message': 'Data yang diterima kosong'}, 400
             
             cursor = self.db.cursor(dictionary=True)
-            query = "select * from transaksi where id = %s"
-            cursor.execute(query, (id,))
+            query = "select * from transaksi where id_transaksi = %s"
+            cursor.execute(query, (id_transaksi,))
             transaksi = cursor.fetchone()
             cursor.close()
 
@@ -100,8 +100,8 @@ class TransaksiController:
                 return {'message': 'Data transaksi tidak ditemukan'}, 404
             
             cursor = self.db.cursor()
-            query = "update transaksi SET id_pelanggan = %s, tanggal = %s, updated_at = NOW() where id = %s"
-            cursor.execute(query, (data['id_pelanggan'], data['tanggal'], id))
+            query = "update transaksi SET id_pelanggan = %s, tanggal = %s, updated_at = NOW() where id_transaksi = %s"
+            cursor.execute(query, (data['id_pelanggan'], data['tanggal'], id_transaksi))
             self.db.commit()
             cursor.close()
 

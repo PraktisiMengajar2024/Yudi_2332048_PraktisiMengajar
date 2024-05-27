@@ -54,7 +54,7 @@ DELETE http://127.0.0.1:5000/pelanggan/11
 ### TRANSAKSI
 get http://127.0.0.1:5000/transaksi
 ###
-get http://127.0.0.1:5000/transaksi/1
+get http://127.0.0.1:5000/transaksi/7
 ###
 POST http://127.0.0.1:5000/transaksi
 Content-Type: application/json
@@ -68,15 +68,15 @@ Content-Type: application/json
 get http://127.0.0.1:5000/detail_transaksi
 
 ###
-get http://127.0.0.1:5000/detail_transaksi/2
+get http://127.0.0.1:5000/detail_transaksi/7
 
 ###
 POST http://127.0.0.1:5000/detail_transaksi
 Content-Type: application/json
 
 {
-    "id_transaksi": 2,
-    "id_produk": 12,
-    "jumlah": 3,
-    "metode_pembayaran": "Cash"
+    "id_transaksi": 7,
+    "id_produk": 11,
+    "jumlah": 1,
+    "metode_pembayaran": "M-Banking BCA"
 }
