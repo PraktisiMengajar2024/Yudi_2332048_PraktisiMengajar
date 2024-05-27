@@ -24,7 +24,7 @@ class TransaksiController:
                     created_at = datetime.now() - created_at
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at 
-                transaksi = Transaksi(row['id'], row['pelanggan_id'], row['tanggal'], created_at, updated_at)
+                transaksi = Transaksi(row['id'], row['id_pelanggan'], row['tanggal'], created_at, updated_at)
                 transaksi_list.append(transaksi)
 
             return transaksi_list
@@ -57,7 +57,7 @@ class TransaksiController:
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at
                 
-                transaksi_obj = Transaksi(transaksi['id'], transaksi['pelanggan_id'], transaksi['tanggal'], created_at, updated_at)
+                transaksi_obj = Transaksi(transaksi['id'], transaksi['id_pelanggan'], transaksi['tanggal'], created_at, updated_at)
                 return {'transaksi': transaksi_obj.to_dict()}, 200
             else:
                 return {'message': 'Data transaksi tidak ditemukan'}, 404
@@ -68,14 +68,14 @@ class TransaksiController:
     # tambah data transaksi
     def tambah_transaksi(self,data):
         try:
-            pelanggan_id = data.get('pelanggan_id')
+            id_pelanggan = data.get('id_pelanggan')
             tanggal = data.get('tanggal')
             created_at = datetime.now()
             updated_at = datetime.now()
 
             cursor = self.db.cursor()
-            query = 'insert into transaksi (pelanggan_id, tanggal, created_at, updated_at) VALUES (%s, %s, %s, %s, %s)'
-            cursor.execute(query, (pelanggan_id, tanggal, created_at, updated_at))
+            query = 'insert into transaksi (id_pelanggan, tanggal, created_at, updated_at) VALUES (%s, %s, %s, %s)'
+            cursor.execute(query, (id_pelanggan, tanggal, created_at, updated_at))
             self.db.commit()
             cursor.close()
 
@@ -100,8 +100,8 @@ class TransaksiController:
                 return {'message': 'Data transaksi tidak ditemukan'}, 404
             
             cursor = self.db.cursor()
-            query = "update transaksi SET pelanggan_id = %s, tanggal = %s, updated_at = NOW() where id = %s"
-            cursor.execute(query, (data['pelanggan_id'], data['tanggal'], id))
+            query = "update transaksi SET id_pelanggan = %s, tanggal = %s, updated_at = NOW() where id = %s"
+            cursor.execute(query, (data['id_pelanggan'], data['tanggal'], id))
             self.db.commit()
             cursor.close()
 

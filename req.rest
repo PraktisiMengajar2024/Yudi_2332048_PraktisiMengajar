@@ -1,6 +1,6 @@
+### PRODUK
 get http://127.0.0.1:5000/produk
-
-### post
+###
 POST http://127.0.0.1:5000/produk
 Content-Type: application/json
 
@@ -10,28 +10,73 @@ Content-Type: application/json
     "harga": "100.00",
     "stok": "25"
 }
+###
+PUT http://127.0.0.1:5000/produk/22
+Content-Type: application/json
 
-###pelanggan
+{
+    "nama": "Jaket",
+    "kategori": "Pakaian",
+    "harga": "100.00",
+    "stok": "25"
+}
+###
+DELETE http://127.0.0.1:5000/produk/24
+
+### PELANGGAN
 get http://127.0.0.1:5000/pelanggan
 
 ###
-get http://127.0.0.1:5000/pelanggan/1
+get http://127.0.0.1:5000/pelanggan/8
 
 ###
 POST http://127.0.0.1:5000/pelanggan
 Content-Type: application/json
 
 {
-    "nama": "Yudi",
-    "alamat": "Jl. raja isa Purimas residence blok b6/09",
-    "telepon": "0895385203781"
+    "nama": "Bagus",
+    "alamat": "Taman Mediterania",
+    "telepon": "08196270958"
 }
 ###
-PUT http://127.0.0.1:5000/pelanggan/1
+PUT http://127.0.0.1:5000/pelanggan/10
 Content-Type: application/json
 
 {
-    "nama": "Yudi",
-    "alamat": "Jl. kelapa puan no 31 Sukajadi",
-    "telepon": "085608518902"
+    "nama": "Bagus",
+    "alamat": "Taman Mediterania",
+    "telepon": "081212445867"
+}
+
+###
+DELETE http://127.0.0.1:5000/pelanggan/11
+
+### TRANSAKSI
+get http://127.0.0.1:5000/transaksi
+###
+get http://127.0.0.1:5000/transaksi/1
+###
+POST http://127.0.0.1:5000/transaksi
+Content-Type: application/json
+
+{
+    "id_pelanggan":1,
+    "tanggal": "2024-02-03"
+}
+
+### DETAIL TRANSAKSI
+get http://127.0.0.1:5000/detail_transaksi
+
+###
+get http://127.0.0.1:5000/detail_transaksi/2
+
+###
+POST http://127.0.0.1:5000/detail_transaksi
+Content-Type: application/json
+
+{
+    "id_transaksi": 2,
+    "id_produk": 12,
+    "jumlah": 3,
+    "metode_pembayaran": "Cash"
 }
