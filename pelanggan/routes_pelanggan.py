@@ -12,7 +12,8 @@ def lihat_pelanggan():
 #rute mencari data
 @pelanggan_routes.route('/pelanggan/<int:id>', methods=['GET'])
 def cari_pelanggan(id):
-    return pelanggan_controller.cari_pelanggan(id)
+    if request.method == 'GET':
+        return pelanggan_controller.cari_pelanggan(id)
 
 #rute tambah data
 @pelanggan_routes.route('/pelanggan', methods=['POST'])

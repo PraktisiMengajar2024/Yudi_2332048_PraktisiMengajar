@@ -26,3 +26,12 @@ Content-Type: application/json
     "alamat": "Jl. raja isa Purimas residence blok b6/09",
     "telepon": "0895385203781"
 }
+###
+PUT http://127.0.0.1:5000/pelanggan/1
+Content-Type: application/json
+
+{
+    "nama": "Yudi",
+    "alamat": "Jl. kelapa puan no 31 Sukajadi",
+    "telepon": "085608518902"
+}

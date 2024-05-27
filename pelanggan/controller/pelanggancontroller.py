@@ -57,7 +57,7 @@ class PelangganController:
                 if isinstance(updated_at, timedelta):
                     updated_at = datetime.now() - updated_at
                 
-                pelanggan_obj = pelanggan(pelanggan['id'], pelanggan['nama'], pelanggan['alamat'], pelanggan['telepon'], created_at, updated_at)
+                pelanggan_obj = Pelanggan(pelanggan['id'], pelanggan['nama'], pelanggan['alamat'], pelanggan['telepon'], created_at, updated_at)
                 return {'pelanggan': pelanggan_obj.to_dict()}, 200
             else:
                 return {'message': 'Data pelanggan tidak ditemukan'}, 404
